@@ -20,7 +20,7 @@ abstract class Crud extends DB{
 		return $stmt->fetchAll();
     }
     public function delete($id){
-        $sql = 'DELETE * FROM $this->table WHERE id = :id';
+        $sql = "DELETE FROM produtos WHERE `produtos`.`id` = $id";
         $stmt = DB::prepare($sql);
         $stmt->bindParam(':id',$id, PDO::PARAM_INT);
         return $stmt->execute();

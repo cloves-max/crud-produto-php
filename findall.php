@@ -22,12 +22,20 @@
     <tr>
         <?php 
         $produto = new Produto();	
+        if(isset($_GET['acao']) && $_GET['acao'] == 'deletar'):
+
+          $id = (int)$_GET['id'];
+          if($produto->delete($id)){
+            echo "Deletado com sucesso!";
+          }
+    
+        endif;
         foreach ($produto->findall() as $key => $value):?>
             <td><?php echo  $value->nome; ?></td>
     <td><?php echo $value->descricao; ?></td>
     <td><?php echo $value->modelo; ?></td>
     <td><?php echo "<a href='update.php?id=" . $value->id . "'>Editar</a>"; ?> 
-    <?php echo "<a href='index.php?acao=deletar&id=" . $value->id . "' onclick='return confirm(\"Deseja realmente deletar?\")'>Deletar</a>"; ?></td>
+    <?php echo "<a href='findall.php?acao=deletar&id=" . $value->id . "' onclick='return confirm(\"Deseja realmente deletar?\")'>Deletar</a>"; ?></td>
 </tr>
 <?php endforeach;?>
   </tr>

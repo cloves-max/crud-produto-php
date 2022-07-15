@@ -15,6 +15,7 @@
 <body>
 	<?php
         $prouto = new Produto(); 
+        
         $id = (int)$_GET['id'];
         
 		$produto = $prouto->find($id);
@@ -22,19 +23,19 @@
 	?>
     <?php 
      
-    if(isset($_POST['atualizar'])):
-        $id = $_POST['id'];
-        $nome = $_POST['nome'];
+     if(isset($_POST['atualizar'])):
+	
+		$produto = new Produto();
+        $id = $_GET['id'];
+		$nome = $_POST['nome'];
 		$descricao = $_POST['descricao'];
 		$modelo = $_POST['modelo'];
 
-        $produto->setNome($nome);
+		$produto->setNome($nome);
 		$produto->setDescricao($descricao);
 		$produto->setModelo($modelo);
-
 		$produto->update($id);
-        echo 'editado com sucesso';
-    endif;
+	endif;
     ?>
 <form method="POST" action="">
     <label for="fname">Nome</label>

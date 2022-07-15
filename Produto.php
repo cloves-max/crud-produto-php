@@ -30,12 +30,13 @@
     }
     public function update($id)
     {
-       
-        $sql= "UPDATE $this->table SET nome= :nome, descricao= :descricao, modelo= :modelo WHERE id = :id";
-        $stmt = DB::prepare($sql);
-        $stmt->bindParam(':email',$this->nome);
-        $stmt->bindParam(':descricao', $this->descricao);
-        $stmt->bindParam(':modelo',$this->modelo);
+        $sql  = "UPDATE $this->table SET nome = :nome, descricao = :descricao, modelo = :modelo WHERE id = :id";
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(':nome', $this->nome);
+		$stmt->bindParam(':descricao', $this->descricao);
+        $stmt->bindParam(':modelo', $this->modelo);
+		$stmt->bindParam(':id', $id);
+		return $stmt->execute();
     }
 
  }
